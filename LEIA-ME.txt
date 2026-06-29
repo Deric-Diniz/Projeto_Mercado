@@ -1,0 +1,59 @@
+========================================================================
+   DOCUMENTAÇÃO DE IMPLANTAÇÃO E ARQUITETURA - SISTEMA MINIMERCADO
+========================================================================
+
+1. RESUMO DO PROJETO
+------------------------------------------------------------------------
+O sistema consiste em uma versão adaptada de um software de controle e
+cadastro voltado a operações de varejo de pequeno porte (Minimercados).
+O software executa o padrão "C" (Create) do ciclo CRUD tanto para a 
+base de clientes fidelidade quanto para a base de controle de lotes e 
+validade de mercadorias no estoque.
+
+2. ARQUITETURA DE ARQUIVOS E DIRETÓRIOS
+------------------------------------------------------------------------
+Para o pleno funcionamento, organize na pasta raiz do seu servidor local
+(ex: htdocs/minimercado ou www/minimercado) seguindo a estrutura:
+
+C:\xampp\htdocs\minimercado\
+│
+├── index.php             (Clientes: Cadastro + Listagem Read)
+├── inserircliente.php    (Clientes: Executa o Insert)
+├── editarcliente.php     (Clientes: Tela com dados preenchidos)
+├── atualizarcliente.php  (Clientes: Executa o Update)
+├── excluircliente.php    (Clientes: Executa o Delete)
+│
+├── produto.php           (Produtos: Cadastro + Listagem Read)
+├── inserirproduto.php    (Produtos: Executa o Insert)
+├── editarproduto.php     (Produtos: Tela com dados preenchidos)
+├── atualizarproduto.php  (Produtos: Executa o Update)
+├── excluirproduto.php    (Produtos: Executa o Delete)
+│
+├── banco.sql
+├── LEIA-ME.txt
+│
+├── css/
+│   └── style.css
+└── factory/
+    └── conexao.php       (Conexão global na porta 3307)  
+3. REVISÕES E CORREÇÕES CRÍTICAS REALIZADAS
+------------------------------------------------------------------------
+- Centralização de Infraestrutura: Unificou-se os dois bancos de dados 
+  distintos e concorrentes para uma única base unificada ('bd_minimercado').
+- Sincronização de Nomenclatura: Corrigidas as chamadas das queries PHP
+  que apontavam para tabelas divergentes das declaradas no script SQL.
+- Limpeza de Código da Interface: Removidos atributos HTML incorretos 
+  e malformados que podiam comprometer o carregamento do CSS corporativo.
+- Revisão Textual Geral: Revisados erros de digitação e termos da
+  documentação arquitetural.
+
+4. INSTRUÇÕES DE IMPLANTAÇÃO E TESTE
+------------------------------------------------------------------------
+Passo 1: Certifique-se de que o servidor Apache e o MySQL estejam ativos. 
+         A conexão do banco está parametrizada na porta padrão 3307.
+Passo 2: Execute o script estrutural presente em 'banco.sql' dentro do seu 
+         gerenciador (phpMyAdmin ou terminal MySQL).
+Passo 3: Mova a pasta do ecossistema do minimercado para o diretório web.
+Passo 4: Realize os testes de persistência através da URL base local:
+         http://localhost/minimercado/index.php
+========================================================================
